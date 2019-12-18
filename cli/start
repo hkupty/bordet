@@ -1,0 +1,5 @@
+#!/bin/env bash
+BIN_DIR="$(dirname "$(realpath "$0")")"
+ROOT_DIR="$(dirname "$BIN_DIR")"
+
+cd $ROOT_DIR && clojure -m bordet.core

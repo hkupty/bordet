@@ -1,0 +1,18 @@
+#!/bin/env bash
+refresh(){
+  redis-cli PUBLISH "bordet.channels/force" "${1:-all}"
+}
+
+wipe(){
+  redis-cli PUBLISH "bordet.redis/wipe" ""
+}
+
+reload-config(){
+  redis-cli PUBLISH "bordet.config/reload" ""
+}
+
+stop(){
+  redis-cli PUBLISH "bordet.core/stop" ""
+}
+
+"$@"
