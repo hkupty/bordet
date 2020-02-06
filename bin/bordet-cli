@@ -15,4 +15,11 @@ stop(){
   redis-cli PUBLISH "bordet.core/stop" ""
 }
 
+start(){
+  SCRIPT=$(readlink -f $0)
+  cd $(dirname $(dirname $SCRIPT)) && {
+    clojure -m bordet.core
+  }
+}
+
 "$@"
