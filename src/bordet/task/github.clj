@@ -1,7 +1,6 @@
 (ns bordet.task.github
   (:require [bordet.http :as http]
             [clojure.string :as str]
-            [hkupty.toolkit :refer [tap]]
             [bordet.config :as config]
             [bordet.channels :as channels]
             [taoensso.timbre :refer [info debug]]))
