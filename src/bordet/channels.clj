@@ -42,6 +42,9 @@
                               (info ns- "called with value" i)
                               i))
                        (task-xf ns-)
+                       (map (fn [i]
+                              (info "Invoke went through.")
+                              i))
                        (map (partial vector (keyword ns- "dashboard")))))
         _ (a/sub trigger :tick ch)
         _ (a/admix sink ch)]
@@ -84,9 +87,8 @@
   (run! a/close! @tasks)
   (reset! tasks []))
 
-(defmethod control/message-handler ::force [[_ _ refresh]]
+(defmethod control/message-handler ::force [[_ _ _ refresh]]
   (info "Forcing refresh")
-  (cond-> refresh
-    (#{"all" ""} refresh) (and "bordet.channels")
-    true (keyword "refresh")
-    true force-tick))
+  (force-tick (cond
+    (#{"all" ""} refresh) ::refresh
+    :else (keyword refresh "refresh"))))
