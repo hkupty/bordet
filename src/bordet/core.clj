@@ -17,7 +17,7 @@
 
 
 (defn require-tasks! [tasks]
-  (info "oading namespaces for the following tasks" tasks)
+  (info "Loading namespaces for the following tasks" tasks)
   (run! require tasks))
 
 (defn -main [& args]

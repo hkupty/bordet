@@ -1,0 +1,10 @@
+[Unit]
+Description=Dashboard manager
+
+[Service]
+ExecStart=/opt/code/hkupty/bordet/bin/bordet-cli start
+ExecReload=/opt/code/hkupty/bordet/bin/bordet-cli reload-config
+ExecStop=/opt/code/hkupty/bordet/bin/bordet-cli stop
+
+[Install]
+WantedBy=default.target

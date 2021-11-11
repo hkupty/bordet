@@ -8,7 +8,7 @@ local bordet = {
       failure = "✘"
     }
   }, {
-    __index=function(tbl, key)
+    __index = function(tbl, key)
       local dt = rawget(tbl, key)
       if dt == nil then
         dt = {
@@ -44,7 +44,6 @@ bordet.get_dashboard = function()
   vim.fn.matchadd("String", bordet.config.signs.success)
   vim.fn.matchadd("ErrorMsg", bordet.config.signs.failure)
 
-
   local sections = bordet.sections()
 
   for _, section in ipairs(sections) do
@@ -73,7 +72,7 @@ bordet.get_dashboard = function()
   bordet.cache.lines = lines
   vim.api.nvim_command('nmap <buffer> <silent> <localleader>r <Cmd>lua vim.api.nvim_buf_set_lines(0, 0, -1, false, require("bordet").get_dashboard())<Cr>')
   vim.api.nvim_command('nmap <buffer> <silent> <CR> <Cmd>lua require("bordet").action()<Cr>')
-  vim.api.nvim_command('nmap <buffer> <silent> <M-CR> <Cmd>call system("redis-cli PUBLISH bordet.channels/force")<Cr>')
+  vim.api.nvim_command('nmap <buffer> <silent> <M-CR> <Cmd>call system("redis-cli PUBLISH bordet.channels/force all")<Cr>')
   return lines
 end
 
